@@ -4,15 +4,16 @@ module.exports = {
   ],
   rules: {
     camelcase: 0,
-    'comma-dangle': [2, 'never'],
-    'comma-spacing': [2, { before: false, after: true }],
+    'comma-dangle': [0, 'never'],
+    'comma-spacing': [0, { before: false, after: true }],
+    'comma-style': 0,
     'consistent-return': 0,
-    curly: 0,
+    curly: 2,
     'default-case': 0,
     eqeqeq: [2, 'smart'],
     'func-names': 0,
     'guard-for-in': 2,
-    indent: [2, 2, { SwitchCase: 1 }],
+    indent: [0, 2, { SwitchCase: 1 }],
     'key-spacing': [2, { beforeColon: false, afterColon: true }],
     'keyword-spacing': [2, { before: true, after: true }],
     'max-len': 0,
@@ -47,7 +48,8 @@ module.exports = {
     'quote-props': 0,
     quotes: [1, 'single'],
     'wrap-iife': [2, 'outside'],
-    'vars-on-top': 0
+    'vars-on-top': 0,
+    "semi": [0, "never"]
   },
   env: {
     node: true,

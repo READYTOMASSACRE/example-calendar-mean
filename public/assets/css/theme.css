@@ -1,0 +1,14 @@
+.active {
+    background: #8dbba0 !important;
+    color: white;
+}
+
+.current {
+    background: #6b90c7 !important;
+    color: white;
+}
+
+.has-active {
+    border-bottom: 3px solid #9ac7a8;
+    background: #b6e8c1;
+}

@@ -33,4 +33,7 @@
       positionY: 'bottom'
     });
   });
+
+  moment.locale('ru')
+
 }(window));

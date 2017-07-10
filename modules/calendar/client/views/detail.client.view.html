@@ -1,0 +1,68 @@
+<section class="ng-scope">
+    <div class="page-header">
+      <h1>Calendar</h1>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <div class="row">
+                <button class="btn btn-primary" ng-click="vm.toggle('left')">Left</button>
+                <button class="btn btn-default" ng-click="vm.toggle('now')">Now</button>
+                <button class="btn btn-primary" ng-click="vm.toggle('right')">Right</button>
+                <button class="btn btn-primary" ng-click="vm.toggle('day')">Day</button>
+                <button class="btn btn-primary" ng-click="vm.toggle('month')">Month</button>
+            </div>
+            <div class="row">
+                <h2 ng-if="vm.view === 'month'" ng-bind="vm.currentDate.format('MMMM, YYYY')"></h2>
+                <h2 ng-if="vm.view === 'day'" ng-bind="vm.currentDate.format('DD MMMM, YYYY')"></h2>
+                <table class="table table-hover">
+                    <tr ng-if="vm.view === 'month'"><td  ng-repeat="(index, dayname) in vm.header" ng-bind="dayname" ></td></tr>
+                    <tr ng-repeat="(index, cells) in vm.items">
+                        <td
+                            ng-repeat="(indexObject, object) in cells"
+                            ng-bind="object.d"
+                            ng-click="vm.select(vm.items, object)"
+                            ng-class="(
+                                (object.hasActive ? 'has-active ' : '') + (
+                                    object.active || object.current ?
+                                        object.current
+                                            ? 'current'
+                                            : 'active'
+                                        : ''
+                                )).trim()
+                            ">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form name="vm.form.calendarForm" class="form-horizontal" ng-submit="vm.save(vm.form.calendarForm.$valid)" novalidate>
+              <fieldset>
+                <div class="form-group" show-errors>
+                  <label class="control-label" for="title">Title</label>
+                  <input name="title" type="text" ng-model="vm.calendar.title" id="title" class="form-control" placeholder="Title" required autofocus />
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="content">Description</label>
+                  <textarea name="description" ng-model="vm.calendar.description"  id="description" class="form-control" cols="20" rows="1" placeholder="Description"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="content">Started at</label>
+                   <input name="title" type="text" ng-model="vm.calendar.startedAt" id="startedAt" class="form-control" placeholder="startedAt" required>
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="content">Finished at</label>
+                   <input name="title" type="text" ng-model="vm.calendar.finishedAt" id="finishedAt" class="form-control" placeholder="Finished at" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" ng-class="'btn ' + (vm.isNew ? 'btn-default' : 'btn-success')" ng-bind="vm.isNew ? 'Create' : 'Update'"></button>
+                    <input ng-if="!vm.isNew" type="button" class="btn btn-danger" ng-click="vm.remove()" value="Delete">
+                    <input type="button" class="btn btn-default" ng-click="vm.reset()" value="Cancel"/>
+                </div>
+              </fieldset>
+            </form>
+        </div>
+    </div>
+</section>
