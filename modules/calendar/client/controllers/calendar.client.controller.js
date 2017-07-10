@@ -82,10 +82,8 @@
     function toggle(direction) {
         if (direction === 'left') {
             vm.currentDate = moment(vm.currentDate).subtract(1, vm.view)
-            vm.fetch()
         } else if (direction === 'right') {
             vm.currentDate = moment(vm.currentDate).add(1, vm.view)
-            vm.fetch()
         } else if (direction == 'day') {
             vm.view = 'day'
         } else if (direction == 'month') {
@@ -94,6 +92,7 @@
             vm.currentDate = moment(new Date())
         }
 
+        vm.fetch()
         vm.render()
     }
 

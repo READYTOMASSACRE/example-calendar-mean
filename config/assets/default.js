@@ -26,8 +26,8 @@ module.exports = {
         'public/lib/angular-ui-router/release/angular-ui-router.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         // endbower
-        'public/lib/jquery-min/jquery-3.2.1.min.js',
-        'public/lib/moment/moment-with-locales.js',
+        'public/assets/js/jquery-3.2.1.min.js',
+        'public/assets/js/moment-with-locales.js',
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
