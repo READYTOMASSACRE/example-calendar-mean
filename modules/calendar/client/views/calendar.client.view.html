@@ -1,15 +1,15 @@
 <section class="ng-scope">
     <div class="page-header">
-      <h1>Calendar</h1>
+      <h1>Календарь бронирования</h1>
     </div>
     <div class="row">
         <div class="col-md">
             <div class="row">
-                <button class="btn btn-primary" ng-click="vm.toggle('left')">Left</button>
-                <button class="btn btn-default" ng-click="vm.toggle('now')">Now</button>
-                <button class="btn btn-primary" ng-click="vm.toggle('right')">Right</button>
-                <button class="btn btn-primary" ng-click="vm.toggle('day')">Day</button>
-                <button class="btn btn-primary" ng-click="vm.toggle('month')">Month</button>
+                <button class="btn btn-primary" ng-click="vm.toggle('left')">Влево</button>
+                <button class="btn btn-default" ng-click="vm.toggle('now')">Сейчас</button>
+                <button class="btn btn-primary" ng-click="vm.toggle('right')">Вправо</button>
+                <button class="btn btn-primary" ng-click="vm.toggle('day')">День</button>
+                <button class="btn btn-primary" ng-click="vm.toggle('month')">Месяц</button>
             </div>
             <div class="row">
                 <h2 ng-if="vm.view === 'month'" ng-bind="vm.currentDate.format('MMMM, YYYY')"></h2>
@@ -41,25 +41,25 @@
             <form name="vm.form.calendarForm" class="form-horizontal" ng-submit="vm.save(vm.form.calendarForm.$valid)" novalidate>
               <fieldset>
                 <div class="form-group" show-errors>
-                  <label class="control-label" for="title">Title</label>
-                  <input name="title" type="text" ng-model="vm.calendar.title" id="title" class="form-control" placeholder="Title" required autofocus />
+                  <label class="control-label" for="title">Название</label>
+                  <input name="title" type="text" ng-model="vm.calendar.title" id="title" class="form-control" placeholder="Введите название..." required autofocus />
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="content">Description</label>
-                  <textarea name="description" ng-model="vm.calendar.description"  id="description" class="form-control" cols="20" rows="1" placeholder="Description"></textarea>
+                  <label class="control-label" for="content">Описание</label>
+                  <textarea name="description" ng-model="vm.calendar.description"  id="description" class="form-control" cols="20" rows="1" placeholder="Введите описание..."></textarea>
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="content">Started at</label>
-                   <input name="title" type="text" ng-model="vm.calendar.startedAt" id="startedAt" class="form-control" placeholder="startedAt" required>
+                  <label class="control-label" for="content">Начало, с</label>
+                   <input name="title" type="text" ng-model="vm.calendar.startedAt" id="startedAt" class="form-control" placeholder="Введите дату..." required>
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="content">Finished at</label>
-                   <input name="title" type="text" ng-model="vm.calendar.finishedAt" id="finishedAt" class="form-control" placeholder="Finished at" required>
+                  <label class="control-label" for="content">Конец, по</label>
+                   <input name="title" type="text" ng-model="vm.calendar.finishedAt" id="finishedAt" class="form-control" placeholder="Введите дату..." required>
                 </div>
                 <div class="form-group">
-                    <button type="submit" ng-class="'btn ' + (vm.isNew ? 'btn-default' : 'btn-success')" ng-bind="vm.isNew ? 'Create' : 'Update'"></button>
-                    <input ng-if="!vm.isNew" type="button" class="btn btn-danger" ng-click="vm.remove()" value="Delete">
-                    <input type="button" class="btn btn-default" ng-click="vm.reset()" value="Cancel"/>
+                    <button type="submit" ng-class="'btn ' + (vm.isNew ? 'btn-default' : 'btn-success')" ng-bind="vm.isNew ? 'Создать' : 'Обновить'"></button>
+                    <input ng-if="!vm.isNew" type="button" class="btn btn-danger" ng-click="vm.remove()" value="Удалить">
+                    <input type="button" class="btn btn-default" ng-click="vm.reset()" value="Отмена"/>
                 </div>
               </fieldset>
             </form>

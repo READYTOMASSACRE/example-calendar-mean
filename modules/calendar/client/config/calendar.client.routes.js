@@ -11,13 +11,13 @@
     $stateProvider
       .state('calendar', {
         abstract: true,
-        url: '/calendar',
+        url: '/',
         template: '<ui-view/>'
       })
-      .state('calendar.detail', {
-          'url': '/detail',
-          templateUrl: '/modules/calendar/client/views/detail.client.view.html',
-          controller: 'CalendarDetailController',
+      .state('calendar.view', {
+          'url': '',
+          templateUrl: '/modules/calendar/client/views/calendar.client.view.html',
+          controller: 'CalendarController',
           controllerAs:'vm',
           resolve: {
             calendarResolve: newCalendarItem,
