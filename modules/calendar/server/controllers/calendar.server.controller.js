@@ -26,7 +26,7 @@ exports.create = function (req, res) {
 };
 
 /**
- * Show the current article
+ * Show the current calendar
  */
 exports.read = function (req, res) {
   // convert mongoose document to JSON
@@ -40,7 +40,7 @@ exports.read = function (req, res) {
 };
 
 /**
- * Update an article
+ * Update an calendar
  */
 exports.update = function (req, res) {
   var calendar = req.calendar;
@@ -61,7 +61,7 @@ exports.update = function (req, res) {
 };
 
 /**
- * Delete an article
+ * Delete an calendar
  */
 exports.delete = function (req, res) {
   var calendar = req.calendar;
@@ -78,7 +78,7 @@ exports.delete = function (req, res) {
 };
 
 /**
- * List of Articles
+ * List of Calendar Items
  */
 exports.list = function (req, res) {
   let $query = {}
@@ -103,7 +103,7 @@ exports.list = function (req, res) {
 };
 
 /**
- * Article middleware
+ * Calendar middleware
  */
 exports.itemByID = function (req, res, next, id) {
 

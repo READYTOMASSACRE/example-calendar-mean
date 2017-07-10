@@ -11,6 +11,10 @@ var mongoose = require('mongoose')
  */
 
 var CalendarSchema = null
+
+/**
+ * Валидатор на уникальные записи
+ */
 var validatorUniqueLine = function (startedAt, result) {
     if (this.isModified('startedAt') || this.isModified('finishedAt')) {
         let Calendar = mongoose.model('Calendar', CalendarSchema)
@@ -22,6 +26,9 @@ var validatorUniqueLine = function (startedAt, result) {
     }
 }
 
+/**
+ * Описание модели
+ */
 CalendarSchema = new Schema({
     createdAt: {
         type: Date
@@ -59,6 +66,9 @@ CalendarSchema = new Schema({
     },
 });
 
+/**
+ * Запрос, с помощью которого пытаемся найти пересечение записей
+ */
 CalendarSchema.statics.validateLines = function(lines, id, cb) {
     var $query = null
     if (
@@ -99,4 +109,8 @@ CalendarSchema.statics.validateLines = function(lines, id, cb) {
 
     return ($query && this.model('Calendar').find($query, cb)) || false
 }
+
+/**
+ * регистрируем модель
+ */
 mongoose.model('Calendar', CalendarSchema)

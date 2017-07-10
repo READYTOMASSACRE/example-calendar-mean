@@ -9,7 +9,7 @@ var acl = require('acl');
 acl = new acl(new acl.memoryBackend());
 
 /**
- * Invoke Articles Permissions
+ * Invoke Calendar Permissions
  */
 exports.invokeRolesPolicies = function () {
   acl.allow([{
@@ -28,12 +28,12 @@ exports.invokeRolesPolicies = function () {
 };
 
 /**
- * Check If Articles Policy Allows
+ * Check If Calendar Policy Allows
  */
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
 
-  // If an article is being processed and the current user created it then allow any manipulation
+  // If an calendar is being processed and the current user created it then allow any manipulation
   if (req.calendar && (
       (req.calendar.user && req.user && req.calendar.user.id === req.user.id)
       || (!req.calendar.user)

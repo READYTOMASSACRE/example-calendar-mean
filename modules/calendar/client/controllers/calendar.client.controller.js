@@ -21,8 +21,10 @@
       , start = moment(vm.currentDate).startOf('month').startOf('week')
       , end = moment(vm.currentDate).endOf('month').endOf('week')
 
+    /** resource calendarResolve init */
     vm.calendar = calendar
 
+    /* form init */
     vm.form = {}
 
     /* functions */
@@ -37,6 +39,7 @@
     vm.fetch = fetch
     /* functions directives end */
 
+    /** moment instance init */
     vm.currentDate = moment()
     vm.view = 'month'
 
@@ -44,9 +47,13 @@
     vm.isNew = true
     vm.counter = 1
 
+    /** запрашиваем первичные данные и тут же рендерим*/
     vm.fetch()
     vm.render()
 
+    /**
+     * удаление записи
+     */
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
         vm.calendar.$remove(() => {
@@ -60,6 +67,9 @@
       }
     }
 
+    /**
+     * сохранение записи
+     */
     function save(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.calendarForm');
@@ -81,6 +91,9 @@
         })
     }
 
+    /**
+     * переключение вида/даты
+     */
     function toggle(direction) {
         if (direction === 'left') {
             vm.currentDate = moment(vm.currentDate).subtract(1, vm.view)
@@ -98,6 +111,9 @@
         vm.render()
     }
 
+    /**
+     * обработчик клика по дате
+     */
     function select(items, selectedItem) {
         vm.currentDate = moment(selectedItem.m)
         vm.isNew = !selectedItem.active
@@ -138,6 +154,9 @@
         }
     }
 
+    /**
+     * вернуть в дефолтное состояние calendar
+     */
     function reset(calendarItem) {
         if (calendarItem) {
             calendarItem.startedAt = moment(new Date(calendarItem.startedAt)).toString()
@@ -155,6 +174,9 @@
         vm.counter = 0
     }
 
+    /**
+     * отрендерить календарь
+     */
     function render(view, start, end) {
         let data = []
         view = view || vm.view
@@ -185,6 +207,9 @@
             })
     }
 
+    /**
+     * проставить active для тех, кто попадает в записи, которые мы выбрали через fetch
+     */
     function setActive(data, view) {
         return new Promise((resolve, reject) => {
             vm.calendarItems.$promise
@@ -216,6 +241,9 @@
         })
     }
 
+    /**
+     * подготовливаем дату для вывода
+     */
     function prepare(data, view) {
         let _data = []
         view = view || vm.view
@@ -235,6 +263,9 @@
         return _data
     }
 
+    /**
+     * запрашиваем api через наш calendarResolve
+     */
     function fetch() {
         var start = moment(vm.currentDate).startOf('year')
           , end = moment(vm.currentDate).endOf('year')
