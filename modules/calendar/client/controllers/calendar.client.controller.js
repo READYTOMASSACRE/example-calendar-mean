@@ -54,6 +54,8 @@
             vm.fetch()
             vm.render()
             vm.reset()
+        }, (res) => {
+            Notification.error({ message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Ошибка при удалении!' })
         })
       }
     }

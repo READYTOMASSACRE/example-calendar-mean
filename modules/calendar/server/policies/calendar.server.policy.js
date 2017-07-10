@@ -13,7 +13,7 @@ acl = new acl(new acl.memoryBackend());
  */
 exports.invokeRolesPolicies = function () {
   acl.allow([{
-    roles: ['guest'],
+    roles: ['guest', 'user'],
     allows: [
         {
             resources: '/api/calendar',
@@ -34,7 +34,11 @@ exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
 
   // If an article is being processed and the current user created it then allow any manipulation
-  if (req.calendar) {
+  if (req.calendar && (
+      (req.calendar.user && req.user && req.calendar.user.id === req.user.id)
+      || (!req.calendar.user)
+    )
+  ) {
     return next();
   }
 
@@ -48,8 +52,8 @@ exports.isAllowed = function (req, res, next) {
         // Access granted! Invoke next middleware
         return next();
       } else {
-        return res.status(403).json({
-          message: 'User is not authorized'
+        return res.status(422).json({
+          message: 'Доступ запрещен, это не ваша бронь'
         });
       }
     }
