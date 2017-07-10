@@ -132,8 +132,8 @@
             items.forEach((itemArr, i, arr) => {
                 itemArr.map(item => {
                     item.current =
-                        item.m >= new Date(selectedItem.resource.startedAt)
-                        && item.m <= new Date(selectedItem.resource.finishedAt)
+                        item.m >= moment(new Date(selectedItem.resource.startedAt)).startOf('hour')
+                        && item.m <= moment(new Date(selectedItem.resource.finishedAt)).endOf('hour')
                             ? true
                             : false
                     return item
