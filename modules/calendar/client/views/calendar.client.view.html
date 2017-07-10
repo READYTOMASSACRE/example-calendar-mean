@@ -3,17 +3,36 @@
       <h1>Календарь бронирования</h1>
     </div>
     <div class="row">
-        <div class="col-md">
+        <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="row">
-                <button class="btn btn-primary" ng-click="vm.toggle('left')">Влево</button>
-                <button class="btn btn-default" ng-click="vm.toggle('now')">Сейчас</button>
-                <button class="btn btn-primary" ng-click="vm.toggle('right')">Вправо</button>
-                <button class="btn btn-primary" ng-click="vm.toggle('day')">День</button>
-                <button class="btn btn-primary" ng-click="vm.toggle('month')">Месяц</button>
+                <div class="hidden-xs">
+                    <div class="col-md-9">
+                        <button class="btn btn-primary" ng-click="vm.toggle('left')">Влево</button>
+                        <button class="btn btn-default" ng-click="vm.toggle('now')">Сейчас</button>
+                        <button class="btn btn-primary" ng-click="vm.toggle('right')">Вправо</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-info" ng-click="vm.toggle('day')">День</button>
+                        <button class="btn btn-info" ng-click="vm.toggle('month')">Месяц</button>
+                    </div>
+                </div>
+                <div class="text-center hidden-lg hidden-md hidden-sm">
+                    <button class="btn btn-primary btn-xs" ng-click="vm.toggle('left')">Влево</button>
+                    <button class="btn btn-default btn-xs" ng-click="vm.toggle('now')">Сейчас</button>
+                    <button class="btn btn-primary btn-xs" ng-click="vm.toggle('right')">Вправо</button>
+                    <button class="btn btn-info btn-xs" ng-click="vm.toggle('day')">День</button>
+                    <button class="btn btn-info btn-xs" ng-click="vm.toggle('month')">Месяц</button>
+                </div>
             </div>
             <div class="row">
-                <h2 ng-if="vm.view === 'month'" ng-bind="vm.currentDate.format('MMMM, YYYY')"></h2>
-                <h2 ng-if="vm.view === 'day'" ng-bind="vm.currentDate.format('DD MMMM, YYYY')"></h2>
+                <div class="hidden-xs">
+                    <h2 ng-if="vm.view === 'month'" ng-bind="vm.currentDate.format('MMMM, YYYY')"></h2>
+                    <h2 ng-if="vm.view === 'day'" ng-bind="vm.currentDate.format('DD MMMM, YYYY')"></h2>
+                </div>
+                <div class="text-center hidden-lg hidden-md hidden-sm">
+                    <h4 ng-if="vm.view === 'month'" ng-bind="vm.currentDate.format('MMMM, YYYY')"></h4>
+                    <h4 ng-if="vm.view === 'day'" ng-bind="vm.currentDate.format('DD MMMM, YYYY')"></h4>
+                </div>
                 <table class="table table-hover">
                     <tr ng-if="vm.view === 'month'"><td  ng-repeat="(index, dayname) in vm.header" ng-bind="dayname" ></td></tr>
                     <tr ng-repeat="(index, cells) in vm.items">
@@ -40,26 +59,47 @@
         <div class="col-md-12">
             <form name="vm.form.calendarForm" class="form-horizontal" ng-submit="vm.save(vm.form.calendarForm.$valid)" novalidate>
               <fieldset>
-                <div class="form-group" show-errors>
+                <div class="form-group hidden-xs hidden-sm" show-errors>
                   <label class="control-label" for="title">Название</label>
                   <input name="title" type="text" ng-model="vm.calendar.title" id="title" class="form-control" placeholder="Введите название..." required autofocus />
                 </div>
-                <div class="form-group">
+                <div class="form-group-sm hidden-lg hidden-md">
+                  <label class="control-label" for="title">Название</label>
+                  <input name="title" type="text" ng-model="vm.calendar.title" id="title" class="form-control" placeholder="Введите название..." required autofocus />
+                </div>
+                <div class="form-group hidden-xs hidden-sm">
                   <label class="control-label" for="content">Описание</label>
                   <textarea name="description" ng-model="vm.calendar.description"  id="description" class="form-control" cols="20" rows="1" placeholder="Введите описание..."></textarea>
                 </div>
-                <div class="form-group">
+                <div class="form-group-sm hidden-lg hidden-md">
+                  <label class="control-label" for="content">Описание</label>
+                  <textarea name="description" ng-model="vm.calendar.description"  id="description" class="form-control" cols="20" rows="1" placeholder="Введите описание..."></textarea>
+                </div>
+                <div class="form-group hidden-xs hidden-sm">
                   <label class="control-label" for="content">Начало, с</label>
                    <input name="title" type="text" ng-model="vm.calendar.startedAt" id="startedAt" data-ng-current-date="vm.calendar.currentDate" class="form-control datetimepicker" placeholder="Введите дату или кликните по ячейке" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group-sm hidden-lg hidden-md">
+                  <label class="control-label" for="content">Начало, с</label>
+                   <input name="title" type="text" ng-model="vm.calendar.startedAt" id="startedAt" data-ng-current-date="vm.calendar.currentDate" class="form-control datetimepicker" placeholder="Введите дату или кликните по ячейке" required>
+                </div>
+                <div class="form-group hidden-xs hidden-sm">
                   <label class="control-label" for="content">Конец, по</label>
                    <input name="title" type="text" ng-model="vm.calendar.finishedAt" id="finishedAt" class="form-control datetimepicker" placeholder="Введите дату или кликните по ячейке" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group-sm hidden-lg hidden-md">
+                  <label class="control-label" for="content">Конец, по</label>
+                   <input name="title" type="text" ng-model="vm.calendar.finishedAt" id="finishedAt" class="form-control datetimepicker" placeholder="Введите дату или кликните по ячейке" required>
+                </div>
+                <div class="form-group hidden-xs">
                     <button type="submit" ng-class="'btn ' + (vm.isNew ? 'btn-default' : 'btn-success')" ng-bind="vm.isNew ? 'Создать' : 'Обновить'"></button>
                     <input ng-if="!vm.isNew" type="button" class="btn btn-danger" ng-click="vm.remove()" value="Удалить">
                     <input type="button" class="btn btn-default" ng-click="vm.reset()" value="Отмена"/>
+                </div>
+                <div class="form-group text-center hidden-lg hidden-md hidden-sm">
+                    <button type="submit" ng-class="'btn btn-xs ' + (vm.isNew ? 'btn-default' : 'btn-success')" ng-bind="vm.isNew ? 'Создать' : 'Обновить'"></button>
+                    <input ng-if="!vm.isNew" type="button" class="btn btn-danger btn-xs" ng-click="vm.remove()" value="Удалить">
+                    <input type="button" class="btn btn-default btn-xs" ng-click="vm.reset()" value="Отмена"/>
                 </div>
               </fieldset>
             </form>
