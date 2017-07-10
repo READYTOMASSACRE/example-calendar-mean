@@ -50,11 +50,11 @@
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="content">Начало, с</label>
-                   <input name="title" type="text" ng-model="vm.calendar.startedAt" id="startedAt" class="form-control" placeholder="Введите дату..." required>
+                   <input name="title" type="text" ng-model="vm.calendar.startedAt" id="startedAt" data-ng-current-date="vm.calendar.currentDate" class="form-control datetimepicker" placeholder="Введите дату или кликните по ячейке" required>
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="content">Конец, по</label>
-                   <input name="title" type="text" ng-model="vm.calendar.finishedAt" id="finishedAt" class="form-control" placeholder="Введите дату..." required>
+                   <input name="title" type="text" ng-model="vm.calendar.finishedAt" id="finishedAt" class="form-control datetimepicker" placeholder="Введите дату или кликните по ячейке" required>
                 </div>
                 <div class="form-group">
                     <button type="submit" ng-class="'btn ' + (vm.isNew ? 'btn-default' : 'btn-success')" ng-bind="vm.isNew ? 'Создать' : 'Обновить'"></button>
